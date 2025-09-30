@@ -1,0 +1,1 @@
+Makes use of CoinGecko API to display information on crypto currency tokens with the addition of public traded companies on the S&P 500. Must use valid name or will result in invalid input error thrown.
