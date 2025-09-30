@@ -1,7 +1,6 @@
 const form = document.getElementById("search-form");
 const input = document.getElementById("search-input");
 const resultsDiv = document.getElementById("results");
-const API_KEY = "CG-EerpQdvXuD1THEzKRXuE7MPj"
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -28,7 +27,7 @@ form.addEventListener("submit", async (event) => {
 
     // Take first match
     const coin = searchData.coins[0];
-    console.log("Coin: ", coin);
+    console.log("Coin data: ", coin);
 
     // Get price
     const priceRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin.id}&vs_currencies=usd`);
