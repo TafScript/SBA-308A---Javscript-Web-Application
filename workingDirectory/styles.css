@@ -1,0 +1,26 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.card {
+  background: #111;
+  border: none;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #0f0; /* Green for gains */
+}
+
+.coin-symbol {
+  font-size: 0.9rem;
+  color: #bbb;
+}
