@@ -15,7 +15,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     // Search coin by name
-    const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`);
+    const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${userInput}`);
     //required fetch json parsing
     const searchData = await searchRes.json();
     if (!searchData.coins.length) {
@@ -26,6 +26,7 @@ form.addEventListener("submit", async (event) => {
 
     // Take first match
     const coin = searchData.coins[0];
+    console.log(coin);
 
     // Get price
     const priceRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin.id}&vs_currencies=usd`);
@@ -45,6 +46,7 @@ form.addEventListener("submit", async (event) => {
       </div>
     `;
   } catch (error) {
-    resultsDiv.innerHTML = `<p class="text-center text-danger">Error fetching data: ${error}.</p>`;
+    // Name must be correct or error will be thrown
+    resultsDiv.innerHTML = `<p class="text-center text-danger">Error fetching data, Input must be valid: ${error}.</p>`;
   }
 });
