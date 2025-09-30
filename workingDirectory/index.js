@@ -13,11 +13,11 @@ form.addEventListener("submit", async (event) => {
   resultsDiv.innerHTML = `<p class="text-center text-muted">Searching...</p>`;
 
   try {
-    // Search coin by name
+    // Get coin search by name
     const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${userInput}`);
     //required fetch json parsing
-    //this api returns not only crypto currency tokens 
-    // but also stock data for public traded companies.
+    //this api returns crypto currency token 
+    //data and stock data for public traded companies.
     const searchData = await searchRes.json();
     if (!searchData.coins.length) {
         // innerHTML nesting html inside div container.
@@ -25,7 +25,7 @@ form.addEventListener("submit", async (event) => {
       return;
     }
 
-    // Take first match
+    // coin data
     const coin = searchData.coins[0];
     console.log("Coin data: ", coin);
 
@@ -33,7 +33,8 @@ form.addEventListener("submit", async (event) => {
     const priceRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin.id}&vs_currencies=usd`);
     //required fetch json parsing
     const priceData = await priceRes.json();
-
+    
+    //price data
     const price = priceData[coin.id].usd;
     console.log("Price data: ", price);
 
@@ -48,7 +49,7 @@ form.addEventListener("submit", async (event) => {
       </div>
     `;
   } catch (error) {
-    // Name must be correct or error will be thrown
+    // Name must be correct or error will be thrown (valid token/stock name)
     resultsDiv.innerHTML = `<p class="text-center text-danger">Error fetching data, Input must be valid: ${error}.</p>`;
   }
 });
