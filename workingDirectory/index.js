@@ -17,6 +17,8 @@ form.addEventListener("submit", async (event) => {
     // Search coin by name
     const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${userInput}`);
     //required fetch json parsing
+    //this api returns not only crypto currency tokens 
+    // but also stock data for public traded companies.
     const searchData = await searchRes.json();
     if (!searchData.coins.length) {
         // innerHTML nesting html inside div container.
@@ -26,7 +28,7 @@ form.addEventListener("submit", async (event) => {
 
     // Take first match
     const coin = searchData.coins[0];
-    console.log(coin);
+    console.log("Coin: ", coin);
 
     // Get price
     const priceRes = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin.id}&vs_currencies=usd`);
@@ -34,6 +36,7 @@ form.addEventListener("submit", async (event) => {
     const priceData = await priceRes.json();
 
     const price = priceData[coin.id].usd;
+    console.log("Price data: ", price);
 
     resultsDiv.innerHTML = `
       <div class="col-md-4 offset-md-4">
